@@ -2,10 +2,11 @@ import React ,{useState}from "react";
 import styled from "styled-components";
 import InvictusOutput from "./InvictusOutput";
 const InvictusMain = () => {
-    const [state1, setstate1] = useState([])
-    const [state2, setstate2] = useState([])
+    const [state1, setstate1] = useState([]);
+    const [state2, setstate2] = useState(0);
     const submit=()=>{
         const input=document.getElementById("input");
+        setstate2(input.value.trim());
         if(input.value.trim()===""){
             input.style.border=`3px solid red`;
             alert("Enter a value in the red color highlightBox");
@@ -14,9 +15,9 @@ const InvictusMain = () => {
             input.style.border=`3px solid red`;
             alert("Entered value must be greater than zero");
         }
-        else if(input.value.trim()>227){
+        else if(input.value.trim()>156){
             input.style.border=`3px solid red`;
-            alert("Entered value must be less than 277");
+            alert("Entered value must be less than 156");
         }
         else{
             input.style.border=`1px solid black`;
@@ -32,27 +33,44 @@ const InvictusMain = () => {
                 var arr=answer.split(' ');
             }
             const ValuesFetched=[];
-
-            for(let i=0;i<input;i++){
-                ValuesFetched[i]=arr[i];
-            }
-            const Frequencies=[];
-            for(let j=0;j<ValuesFetched.length;j++){
+            
+            for(let i=0;i<arr.length;i++){
+                const object={
+                    dataName:"",
+                    frequency:"",
+                }
+                object.dataName=arr[i];
                 let z=0;
-                for(let k=0;k<arr.length;k++){
-                    if(ValuesFetched[j]===arr[k]){
+                for(let j=0;j<arr.length;j++){
+                    if(arr[i]===arr[j]){
                         z++;
-                        Frequencies[j]=z;
+                        object.frequency=z;
                     }
                 }
-            }
+                
+                ValuesFetched[i]=object;
 
-            if(ValuesFetched.length<=0 && Frequencies.length<=0){
+
+            }
+            const filteredArr = ValuesFetched.reduce((acc, current) => {
+                const x = acc.find(item => item.dataName === current.dataName);
+                if (!x) {
+                  return acc.concat([current]);
+                } else {
+                  return acc;
+                }
+              }, []);
+              filteredArr.sort(function(a, b){return b.frequency - a.frequency});
+              const outputArr=[];
+              for(let a=0; a<input;a++){
+                  outputArr[a]=filteredArr[a];
+                }
+
+            if(ValuesFetched.length<=0 && filteredArr.length<=0 && outputArr.length<0){
                 alert("error our side");
             }
             else{
-                setstate1(ValuesFetched);
-                setstate2(Frequencies);
+                setstate1(outputArr);
                 document.querySelector(".Invictus__End").style.display="flex";
             }
 
@@ -62,18 +80,23 @@ const InvictusMain = () => {
     return (
         <DIV>
             <div className="Invictus__Main">
-                <input id="input" type="number" max="227" min="1" placeholder="Enter a Input " />
+                <input id="input" type="number" max="156" min="1" placeholder="Enter a Number" />
                 <button id="submit" onClick={submit}>Submit</button>
             </div>
            <div className="Invictus__End">
-           <table >
+           <table >     
+                <thead>
+                        <tr>
+                             <td colSpan = "3" style={{"fontWeight":"bold"}}>Top {state2} words and their frequency</td>
+                        </tr>
+                </thead>
                 <tbody>
                     <tr>
                         <th>S.No</th>
                         <th>Values</th>
                         <th>Frequencies</th>
                     </tr>
-                    <InvictusOutput Arr1={state1} Arr2={state2} />
+                    <InvictusOutput Arr1={state1}  />
                 </tbody>
             </table>
            </div>

@@ -6,7 +6,7 @@ const InvictusMain = () => {
     const [state2, setstate2] = useState(0);
     const submit=()=>{
         const input=document.getElementById("input");
-        setstate2(input.value.trim());
+
         if(input.value.trim()===""){
             input.style.border=`3px solid red`;
             alert("Enter a value in the red color highlightBox");
@@ -22,6 +22,7 @@ const InvictusMain = () => {
         else{
             input.style.border=`1px solid black`;
             fetched(input.value.trim());
+            setstate2(input.value.trim());
         }
     }
 

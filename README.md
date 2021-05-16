@@ -1,70 +1,43 @@
-# Getting Started with Create React App
+# Question
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+1. A Reactjs front end which accepts a number input N with a Submit button
+2. On entering a value and pressing submit, fetch the contents of [https://raw.githubusercontent.com/invictustech/test/main/README.md](https://raw.githubusercontent.com/invictustech/test/main/README.md)
+3. Find the top N most frequently occurring words in this file (DO NOT use a ready made module for frequency computation)
+4. Display the top N words and their frequency of occurrence in the frontend, in a tabular format
 
-In the project directory, you can run:
 
-### `npm start`
+# HEROKU HOST LINK HERE
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+[https://invictusproject.herokuapp.com/](https://)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+# libraries and plugins used
 
-### `npm test`
+I have downloaded  styled-components throught npm
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+* This helps me to write actual css in jsx.
+* Helps me to reduce the no of files in the folder
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+# Code Explanation
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Inside src folder i created a Components folder which contain all my components file
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## File1 ➡️  InvictusMain
 
-### `npm run eject`
+This file contains main solution of the given question:
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+1. First I get the used input data
+2. And then i fetched text data from this link [https://raw.githubusercontent.com/invictustech/test/main/README.md](https://)
+3. And store this data with the help of split function in a array
+4. After that with the help of looping (for loop) concept i calculated each word repetition(frequency) and store them in a object of array that contain dataNames and frequency
+5. With the help of reduce Method I removed the duplicate name and store them in a separate object of array
+6. With the help of sort Method I sorted frequencies and stored in same array
+7. And send this array as props to InvictusOutput file
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## File2 ➡️InvictusOutput
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+This file contains main solution of the given question:
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+1. Props which are send by Invictus Main are used here
+2. with help of map method i render the components in table

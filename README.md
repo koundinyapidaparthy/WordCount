@@ -1,6 +1,5 @@
 # HEROKU HOST LINK HERE
 
-[](https://https://invictusproject.herokuapp.com/)
 https://invictusproject.herokuapp.com/
 
 
